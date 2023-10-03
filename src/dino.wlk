@@ -26,9 +26,9 @@ object juego{
 	}
 	
 	method jugar(){
-		if (dino.estaVivo()) 
+		if (dino.estaVivo()){ 
 			dino.saltar()
-		else {
+		} else {
 			game.removeVisual(gameOver)
 			self.iniciar()
 		}
@@ -57,14 +57,14 @@ object reloj {
 	method position() = game.at(1, game.height()-1)
 	
 	method pasarTiempo() {
-		//COMPLETAR
+		tiempo += 1
 	}
 	method iniciar(){
 		tiempo = 0
 		game.onTick(100,"tiempo",{self.pasarTiempo()})
 	}
 	method detener(){
-		//COMPLETAR
+		game.removeTickEvent("tiempo")	
 	}
 }
 
@@ -81,8 +81,6 @@ object cactus {
 		position = self.posicionInicial()
 		
 		game.onTick(velocidad,"moverCactus",{self.mover()})
-		
-		
 	}
 	
 	method mover(){
@@ -92,13 +90,11 @@ object cactus {
 	}
 	
 	method chocar(){
-		//COMPLETAR
 		juego.terminar()
 		
 	}
 	
     method detener(){
-		//COMPLETAR
 		position = self.posicionInicial()
 		game.removeTickEvent("moverCactus")
 		}
@@ -122,7 +118,7 @@ object dino {
 	
 	method saltar(){
 		keyboard.space().onPressDo({self.subir()})
-		game.onTick(1000, "Gravedad", {=> self.bajar()})	
+		game.schedule(800, { => self.bajar()})
 	}
 	method subir(){
 		if (self.position().y()==1) {
@@ -134,7 +130,6 @@ object dino {
 			position = self.position().down(1)
 		}
 	}
-	
 	method morir(){
 		game.say(self,"¡Auch!")
 		vivo = false
