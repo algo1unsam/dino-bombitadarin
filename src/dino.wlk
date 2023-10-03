@@ -117,7 +117,7 @@ object dino {
 	method position() = position
 	
 	method saltar(){
-		keyboard.space().onPressDo({self.subir()})
+		self.subir()
 		game.schedule(800, { => self.bajar()})
 	}
 	method subir(){
