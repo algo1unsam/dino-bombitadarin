@@ -82,7 +82,6 @@ object cactus {
 		
 		game.onTick(velocidad,"moverCactus",{self.mover()})
 		
-		
 	}
 	
 	method mover(){
