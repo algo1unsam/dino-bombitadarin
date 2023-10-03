@@ -85,7 +85,9 @@ object cactus {
 	}
 	
 	method mover(){
-		//COMPLETAR
+		position = position.left(1)
+		if (position.x() == -1)
+			position = self.posicionInicial()
 	}
 	
 	method chocar(){
