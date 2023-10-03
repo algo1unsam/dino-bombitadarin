@@ -47,8 +47,6 @@ object juego{
 object gameOver {
 	method position() = game.center()
 	method text() = "GAME OVER"
-	
-
 }
 
 object reloj {
@@ -113,16 +111,20 @@ object dino {
 	method position() = position
 	
 	method saltar(){
-		//COMPLETAR
+		keyboard.space().onPressDo({self.subir()})
+		game.onTick(1000, "Gravedad", {=> self.bajar()})	
 	}
-	
 	method subir(){
-		position = position.up(1)
+		if (self.position().y()==1) {
+			position = position.up(1)	
+		}
+	}
+	method bajar(){
+		if(self.position().y()==2){
+			position = self.position().down(1)
+		}
 	}
 	
-	method bajar(){
-		position = position.down(1)
-	}
 	method morir(){
 		game.say(self,"¡Auch!")
 		vivo = false
