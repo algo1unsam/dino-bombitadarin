@@ -26,9 +26,9 @@ object juego{
 	}
 	
 	method jugar(){
-		if (dino.estaVivo()) 
+		if (dino.estaVivo()){ 
 			dino.saltar()
-		else {
+		} else {
 			game.removeVisual(gameOver)
 			self.iniciar()
 		}
@@ -57,14 +57,14 @@ object reloj {
 	method position() = game.at(1, game.height()-1)
 	
 	method pasarTiempo() {
-		//COMPLETAR
+		tiempo += 1
 	}
 	method iniciar(){
 		tiempo = 0
 		game.onTick(100,"tiempo",{self.pasarTiempo()})
 	}
 	method detener(){
-		//COMPLETAR
+		game.removeTickEvent("tiempo")	
 	}
 }
 
@@ -90,13 +90,11 @@ object cactus {
 	}
 	
 	method chocar(){
-		//COMPLETAR
 		juego.terminar()
 		
 	}
 	
     method detener(){
-		//COMPLETAR
 		position = self.posicionInicial()
 		game.removeTickEvent("moverCactus")
 		}
