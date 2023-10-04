@@ -81,7 +81,6 @@ object cactus {
 		position = self.posicionInicial()
 		
 		game.onTick(velocidad,"moverCactus",{self.mover()})
-		
 	}
 	
 	method mover(){
@@ -121,7 +120,7 @@ object dino {
 	
 	method saltar(){
 		keyboard.space().onPressDo({self.subir()})
-		game.onTick(1000, "Gravedad", {=> self.bajar()})	
+		game.schedule(800, { => self.bajar()})
 	}
 	method subir(){
 		if (self.position().y()==1) {
@@ -133,7 +132,6 @@ object dino {
 			position = self.position().down(1)
 		}
 	}
-	
 	method morir(){
 		game.say(self,"¡Auch!")
 		vivo = false
